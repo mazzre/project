@@ -25,23 +25,13 @@ else:
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=input_shape))
 model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
+model.add(Conv2D(64, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -73,13 +63,14 @@ train_generator = train_datagen.flow_from_directory(
     batch_size=batch_size,
     class_mode='binary')
 
-validation_generator = test_datagen.flow_from_directory(
+history=validation_generator = test_datagen.flow_from_directory(
     validation_data_dir,
     target_size=(img_width, img_height),
     batch_size=  1 ,
     class_mode='binary')
 
-model.load_weights('C:/Users/MASSRIDER/PycharmProjects/untitled4/second_try.h5')
+model.load_weights('C:/Users/MASSRIDER/PycharmProjects/untitled4/first_try.h5')
 prd = model.predict_generator(validation_generator, steps=20)
+
 
 print(prd)

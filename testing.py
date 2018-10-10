@@ -26,23 +26,13 @@ img_width, img_height = 150, 150
 model = Sequential()
 model.add(Conv2D(32, (3, 3), input_shape=input_shape))
 model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+
 model.add(Conv2D(32, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
+model.add(Conv2D(64, (3, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
@@ -72,9 +62,9 @@ test_datagen = ImageDataGenerator(rescale=1. / 255)
 
 
 
-model.load_weights('C:/Users/MASSRIDER/PycharmProjects/untitled4/four_try.h5')
+model.load_weights('C:/Users/MASSRIDER/PycharmProjects/untitled4/first_try.h5')
 
-img = numpy.array(Image.open('C:/Users/MASSRIDER/PycharmProjects/untitled4/upload/299 (5).JPG').resize((150,150))).reshape((1, 150, 150, 3))
+img = numpy.array(Image.open('C:/Users/MASSRIDER/PycharmProjects/untitled4/img.jpg').resize((150,150))).reshape((1, 150, 150, 3))
 img = img.astype('float32')
 img/= 255.
 

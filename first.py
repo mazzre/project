@@ -3,6 +3,8 @@ from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
+import keras
+
 
 img_width, img_height = 150, 150
 
@@ -11,64 +13,40 @@ validation_data_dir = 'C:/Users/MASSRIDER/PycharmProjects/untitled4/validation'
 nb_train_samples = 180
 nb_validation_samples = 20
 epochs = 50
-batch_size = 10
+batch_size = 16
 
 if K.image_data_format() == 'channels_first':
     input_shape = (3, img_width, img_height)
 else:
     input_shape = (img_width, img_height, 3)
 
-model = Sequential()
-model.add(Conv2D(32, (3, 3), input_shape=input_shape))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
 
 
+base_model = keras.applications.resnet50.ResNet50(include_top = False,weights ='imagenet',pooling = 'avg')
+x = base_model.output
+x = keras.layers.Dense(1, activation='sigmoid')(x)
+model = keras.models.Model(base_model.input, x)
 
 
-model.add(Flatten())
-model.add(Dense(64))
-model.add(Activation('relu'))
-model.add(Dropout(0.5))
-model.add(Dense(1))
-model.add(Activation('sigmoid'))
+model.compile(keras.optimizers.sgd(lr=0.01, momentum=0.9), loss='binary_crossentropy', metrics=['acc'])
 
-model.compile(loss='binary_crossentropy',
-              optimizer='rmsprop',
-              metrics=['accuracy'])
+
 
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(
-    rescale=1. / 255,
+    preprocessing_function=keras.applications.resnet50.preprocess_input,
+    width_shift_range=0.15, height_shift_range=0.15,
     shear_range=0.2,
     zoom_range=0.2,
     horizontal_flip=True)
 
 # this is the augmentation configuration we will use for testing:
 # only rescaling
-test_datagen = ImageDataGenerator(rescale=1. / 255)
+test_datagen = ImageDataGenerator(preprocessing_function=keras.applications.resnet50.preprocess_input)
 
 train_generator = train_datagen.flow_from_directory(
     train_data_dir,
-    target_size=(img_width, img_height),
+    target_size=(192,192),
     batch_size=batch_size,
     class_mode='binary')
 
@@ -85,6 +63,6 @@ history = model.fit_generator(
     validation_data=validation_generator,
     validation_steps=nb_validation_samples // batch_size)
 
-print(history.shape)
-print((history*50)/100)
 
+print(history)
+print (history.history['val_acc'][-1])
