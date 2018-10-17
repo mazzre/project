@@ -7,7 +7,7 @@ from keras import backend as K
 
 
 
-img_width, img_height = 150, 150
+img_width, img_height = 160,160
 
 train_data_dir = 'C:/Users/MASSRIDER/PycharmProjects/untitled4/train'
 validation_data_dir = 'C:/Users/MASSRIDER/PycharmProjects/untitled4/validation'
@@ -63,7 +63,7 @@ train_generator = train_datagen.flow_from_directory(
     batch_size=batch_size,
     class_mode='binary')
 
-history=validation_generator = test_datagen.flow_from_directory(
+history = validation_generator = test_datagen.flow_from_directory(
     validation_data_dir,
     target_size=(img_width, img_height),
     batch_size=  1 ,
@@ -72,5 +72,6 @@ history=validation_generator = test_datagen.flow_from_directory(
 model.load_weights('C:/Users/MASSRIDER/PycharmProjects/untitled4/first_try.h5')
 prd = model.predict_generator(validation_generator, steps=20)
 
-
+print(history)
+print(history.history['val_acc'][-1])
 print(prd)
