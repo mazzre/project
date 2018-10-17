@@ -37,6 +37,7 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
 from PIL import Image
 from werkzeug.utils import secure_filename
+import tensorflow as tf
 
 input_shape = (160,160,3)
 
@@ -48,6 +49,7 @@ model = keras.models.Model(base_model.input, x)
 model.compile(loss='binary_crossentropy',
               optimizer='rmsprop',
               metrics=['accuracy'])
+graph = tf.get_default_graph()
 
 # this is the augmentation configuration we will use for training
 train_datagen = ImageDataGenerator(
@@ -70,10 +72,11 @@ web = Flask(__name__)
 UPLOAD_FOLDER = os.path.basename('upload')
 web.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 def predict(path):
-    img = Image.open(path).resize((160,160))
-    img = np.array(img).reshape((1,160,160,3))
-
-    return model.predict(img)
+    global graph
+    with graph.as_default():
+        img = Image.open(path).resize((160,160))
+        img = np.array(img).reshape((1,160,160,3))
+        return model.predict(img)
 
 
 @web.route('/')
