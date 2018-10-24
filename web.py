@@ -9,7 +9,7 @@ from flask import Flask, render_template, request
 from keras.preprocessing.image import ImageDataGenerator
 from flask import Response
 
-from dd import VideoCamera
+from camera import VideoCamera
 
 from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
@@ -86,6 +86,19 @@ def uploads_files():
     else:
         return render_template('select.html')
 
+def gen(camera):
+    while True:
+        frame = camera.get_frame()
+        img = np.array([frame], dtype='float32')
+        prd = model.predict(img)
+        print(prd)
+        yield (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
+@app.route('/video_feed')
+def video_feed():
+    return Response(gen(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
 
 @web.route('/camera')
 def video_feed():
