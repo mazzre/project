@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web app cal money</title>
+</head>
+<body>
+    <input id="userinput">
+    <div id="display"></div>
+    <select id="sel_cur">
+    {% for ex in exchange %}
+    <option value="{{ex.name}}">{{ex.name}}</option>
+    {% endfor %}
+    </select>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+    $("#userinput").change(
+    function(){
+        console.log('triggle');
+        $('#display').text($(this).val()*$('#sel_cur').val() );
+    });
+
+</script>
+
+</body>
+</html>
