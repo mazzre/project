@@ -1,4 +1,5 @@
 import numpy as np
+import numpy
 
 import cv2
 
@@ -58,9 +59,13 @@ class VideoCamera(object):
                 break
             img = np.array([frame])
             prd = model.predict(img)
+
+            idx = int(numpy.round(prd[0, 0]))
+            label = ["sour", "sweet"][idx]
+            print(label)
 # When everything done, release thqqe capture
-        print(prd)
-        cv2.imwrite("upload/img.jpg",frame)
+
+
 
     def __del__(self):
         self.cap.release()

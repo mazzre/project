@@ -1,79 +1,90 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+	<head>
+		<!-- Mobile Specific Meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Favicon-->
+		<link rel="shortcut icon" href="static/img/fav.png">
+		<!-- Author Meta -->
+		<meta name="author" content="Colorlib">
+		<!-- Meta Description -->
+		<meta name="description" content="">
+		<!-- Meta Keyword -->
+		<meta name="keywords" content="">
+		<!-- meta character set -->
+		<meta charset="UTF-8">
+		<!-- Site Title -->
+		<title>CellOn</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600" rel="stylesheet">
+		<!--
+		CSS
+		============================================= -->
+		<link rel="stylesheet" href="static/css/linearicons.css">
+		<link rel="stylesheet" href="static/css/owl.carousel.css">
+		<link rel="stylesheet" href="static/css/font-awesome.min.css">
+		<link rel="stylesheet" href="static/css/nice-select.css">
+		<link rel="stylesheet" href="static/css/magnific-popup.css">
+		<link rel="stylesheet" href="static/css/bootstrap.css">
+		<link rel="stylesheet" href="static/css/main.css">
+	</head>
+	<body>
+		<div class="oz-body-wrap">
+			<!-- Start Header Area -->
+			<header class="default-header generic-header">
+				<div class="container-fluid">
+					<div class="header-wrap">
+						<div class="header-top d-flex justify-content-between align-items-center">
+							<div class="logo">
+								<a href="index.html"><img src="static/img/logo.png" alt=""></a>
+							</div>
+							<div class="main-menubar d-flex align-items-center">
+								<nav class="hide">
+									<a href="index.html">Home</a>
+									<a href="generic.html">Generic</a>
+									<a href="elements.html">Elements</a>
+								</nav>
+								<div class="menu-bar"><span class="lnr lnr-menu"></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- End Header Area -->
+			<!-- Start Banner Area -->
+			<section class="generic-banner relative">
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+			<section class="generic-banner elements-banner relative">
+				<div class="container">
+				<div class="row height align-items-center justify-content-center">
+					<div class="col-lg-10">
+						<div class="banner-content text-center">
+							<form action="/upupup" method="post" enctype="multipart/form-data" >
+								<input class="btn btn-default btn-file">
+								<span>
+									<input align="center"  type="file"  class="btn btn-outline-warning" name = "image" >   </input>
+										<div class="card-body">
+											<p><h3 class="h2 text-black text-uppercase"> {{ answer | safe}}</h3>
+										</div>
+								<center> <button type="submit" value="Upload " class="btn btn-outline-primary"> UPLOAD </button></center>
+								</span>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>SB Admin - Start Bootstrap Template</title>
-  <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom fonts for this template-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Page level plugin CSS-->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin.css" rel="stylesheet">
-    <title>SELECT</title>
-  </head>
-  <body  >
 
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">S O M J A A</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home </a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/camera">Take a Photo</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/upupup">Upload Photo</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-        <div class="container">
-            <div class="row">
-            <div class="col-sm">
-
-        </div>
-
-            <div class="col-sm">
-                <form action="/upupup" method="post" enctype="multipart/form-data" >
-                <span class="btn btn-default btn-file">
-                <h1 align="center"> Test <input type="file" name="image"> </h1></center>
-                    <div class = "card mb-3">
-                    <div class="card-body">
-                        <center><h3>   {{ answer | safe}}</h3></center>
-                    </div>
-                    </div>
-                </span>
-                    <center> <input type="submit" value="Upload your image" class="btn btn-primary"></center>
-                </form>
-             </div>
-                <div class="col-sm">
-                </div>
-            </div>
-        </div>
-
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="js/sb-admin.min.js">
-    <span class="navbar-text"> </span>
-    </body>
+			<!-- End Footer Area -->
+		</div>
+		<script src="static/js/vendor/jquery-2.2.4.min.js"></script>
+		<script src="static/https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="static/js/vendor/bootstrap.min.js"></script>
+		<script src="static/js/jquery.ajaxchimp.min.js"></script>
+		<script src="static/js/owl.carousel.min.js"></script>
+		<script src="static/js/jquery.nice-select.min.js"></script>
+		<script src="static/js/jquery.magnific-popup.min.js"></script>
+		<script src="static/js/main.js"></script>
+	</body>
 </html>
